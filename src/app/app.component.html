@@ -5,31 +5,39 @@
       <br><br>
       <ul class="list-group">
         <div *ngIf="onlyOdd">
-          <li class="list-group-item"
-            [ngClass]="{odd: odd % 2 !== 0 }"
-            [ngStyle]="{backgroundColor: odd % 2 !== 0 ? 'yellow' : 'transparent'}"
-           *ngFor="let odd of oddNumbers;">
+          <li class="list-group-item" [ngClass]="{odd: odd % 2 !== 0 }"
+            [ngStyle]="{backgroundColor: odd % 2 !== 0 ? 'yellow' : 'transparent'}" *ngFor="let odd of oddNumbers;">
             {{odd}}
           </li>
         </div>
-        <div *ngIf="!onlyOdd">
-          <li class="list-group-item" 
-          
-          [ngClass]="{odd: even % 2 !== 0}"
-          [ngStyle]="{backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'}"
-          *ngFor="let even of evenNumbers;">
+        <!-- <div *ngIf="!onlyOdd">
+          <li class="list-group-item" [ngClass]="{odd: even % 2 !== 0}"
+            [ngStyle]="{backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'}" *ngFor="let even of evenNumbers;">
+            {{even}}
+          </li>
+        </div>
+        <ng-template [ngIf]="!onlyOdd">
+          <div>
+            <li class="list-group-item" [ngClass]="{odd: even % 2 !== 0}"
+            [ngStyle]="{backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'}" *ngFor="let even of evenNumbers;">
+            {{even}}
+          </li>
+          </div>
+        </ng-template> -->
+        <div *appUnless="onlyOdd">
+          <li class="list-group-item" [ngClass]="{odd: even % 2 !== 0}"
+            [ngStyle]="{backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'}" *ngFor="let even of evenNumbers;">
             {{even}}
           </li>
         </div>
       </ul>
       <p appBasicHighlight>Style me with basic Directives!</p>
       <p [appBetterHighlight]="'red'" defaultColor="yellow">Style me with better Directives!</p>
-      <!-- src="../assets/facebook@3x.png" -->
-      <!-- <p>NANI</p> -->
-      <img appImgDirective>
-      <ng-template [ngIf]="onlyOdd">
-        <p>Only odd</p>
-      </ng-template>
+      <div [ngSwitch]="value">
+        <p *ngSwitchCase="10">Value is {{value}}</p>
+        <p *ngSwitchCase="1">Value is {{value}}</p>
+        <p *ngSwitchCase="5">Value is {{value}}</p>
+      </div>
     </div>
   </div>
 </div>
